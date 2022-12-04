@@ -4,7 +4,8 @@ import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWith
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
-export default function AuthProvider() {
+
+export default function AuthProvider({ children }) {
     const [user, setUser] = useState();
     const [loading, setLoading] = useState(false);
 
@@ -40,6 +41,7 @@ export default function AuthProvider() {
     return (
         <div>
             <AuthContext.Provider value={authInfo}>
+                {children}
             </AuthContext.Provider>
         </div>
     )
