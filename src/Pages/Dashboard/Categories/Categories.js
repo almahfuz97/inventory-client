@@ -55,16 +55,15 @@ export default function Categories() {
     }
     if (isLoading) return <Spinner />
     return (
-        <div className=' m-12'>
-            <div className=' bg-slate-300 p-4 rounded-lg flex items-center justify-around'>
-                <h3>All Categories</h3>
-                {/* <label  className="btn">open modal</label> */}
-                <label onClick={() => setSpin(false)} htmlFor="add-category" className='bg-slate-400 text-xl  font-bold rounded-lg p-2'>
-                    <span className='font-bold text-2xl text-green-400'>+</span>
+        <div className=''>
+            <div className=' bg-slate-300 p-4 rounded-lg flex items-center justify-between'>
+                <h3 className=' font-bold'>All Categories</h3>
+                <label onClick={() => setSpin(false)} htmlFor="add-category" className='bg-slate-400 text-lg  font-bold rounded-lg p-2 cursor-pointer hover:bg-slate-500'>
+                    <span className='font-bold text-2xl mr-2 text-green-400'>+</span>
                     Add Category
                 </label>
             </div>
-            <div>
+            <div className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                 {
                     categories?.map(category => <CategoryCard key={category._id} refetch={refetch} category={category}></CategoryCard>)
                 }
