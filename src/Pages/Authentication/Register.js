@@ -11,7 +11,7 @@ const provider = new GoogleAuthProvider();
 
 export default function Register() {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const { user, loading, providerLogin, createUser, updateUser } = useContext(AuthContext);
+    const { loading, createUser, updateUser } = useContext(AuthContext);
     const [createdUserEmail, setCreatedUserEmail] = useState();
 
     const [spin, setSpin] = useState(false);
@@ -19,7 +19,7 @@ export default function Register() {
     const [token] = useToken(createdUserEmail);
     const navigate = useNavigate();
 
-    // if (token) return navigate('/');
+    if (token) return navigate('/dashboard');
 
     const onSubmit = data => {
         setErr('')
@@ -48,9 +48,7 @@ export default function Register() {
             })
     }
 
-
     const saveUser = (data) => {
-
         const userInfo = {
             email: data.email,
             name: data.fullName,
@@ -78,10 +76,6 @@ export default function Register() {
     }
 
     if (loading) return <Spinner />
-    // both works
-    // if (token) return <Navigate to='/' />
-    // if (user?.uid) return <Navigate to='/' />
-
     return (
         <div className='my-16 mx-4'>
             <h1 className=' text-center font-bold text-3xl mb-8'>Manage Inventory</h1>

@@ -7,7 +7,7 @@ const auth = getAuth(app);
 
 export default function AuthProvider({ children }) {
     const [user, setUser] = useState();
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     // create user with email and pass
     const createUser = (email, pass) => {
@@ -18,7 +18,7 @@ export default function AuthProvider({ children }) {
         return signInWithEmailAndPassword(auth, email, pass);
     }
     // update user profile
-    const updateUserProfile = (userInfo) => {
+    const updateUser = (userInfo) => {
         return updateProfile(auth.currentUser, userInfo);
     }
     // log out
@@ -30,14 +30,14 @@ export default function AuthProvider({ children }) {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             if (currentUser || currentUser === null) {
-                setLoading(false);
                 setUser(currentUser);
+                setLoading(false);
             }
         })
         return () => unsubscribe();
     }, [])
 
-    const authInfo = { user, loading, createUser, signIn, logOut, updateUserProfile }
+    const authInfo = { user, loading, createUser, signIn, logOut, updateUser }
     return (
         <div>
             <AuthContext.Provider value={authInfo}>

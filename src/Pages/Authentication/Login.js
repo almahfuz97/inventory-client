@@ -20,7 +20,7 @@ export default function Login() {
     const [token] = useToken(loginEmail)
     const [err, setErr] = useState('');
 
-    if (token) return navigate('/inventory', { replace: true })
+    if (token) return navigate('/dashboard', { replace: true })
 
     const onSubmit = data => {
         SetSpin(true);
