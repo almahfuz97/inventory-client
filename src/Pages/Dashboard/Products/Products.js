@@ -20,7 +20,7 @@ export default function Products() {
         }
     })
 
-    const { data: categories, isLoading: isLoading2, isError, refetch: refetch2 } = useQuery({
+    const { data: categories, isLoading: isLoading2 } = useQuery({
         queryKey: ['categories', user?.email],
         queryFn: async () => {
             try {

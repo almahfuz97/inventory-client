@@ -1,26 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
-import userEvent from '@testing-library/user-event';
-import { registerVersion } from 'firebase/app'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
 import Spinner from '../../../Components/Spinner/Spinner';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider'
 
 
 export default function AddProduct() {
-    const { register, handleSubmit, reset, watch, formState, submittedData, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const { user } = useContext(AuthContext);
     const [spinner, setSpinner] = useState(false);
-    const [success, setSuccess] = useState('');
-    const [showCalender, setShowCalender] = useState(false);
-    const [selected, setSelected] = useState(new Date());
-    const [categoryName, setCategoryName] = useState();
     const [bookSpin, setBookSpin] = useState(false);
-    const navigate = useNavigate();
 
-    const { data: categories = [], isLoading, error } = useQuery({
+    const { data: categories = [], isLoading } = useQuery({
         queryKey: ['categories', user?.email],
         queryFn: async () => {
             try {
@@ -52,7 +44,6 @@ export default function AddProduct() {
         }
 
         setBookSpin(true)
-        const image = data.photo[0];
         const formData = new FormData();
         const img = data.photo[0];
         formData.append('image', img);

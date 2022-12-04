@@ -1,21 +1,16 @@
-import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast';
-import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Spinner from '../../Components/Spinner/Spinner';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import useToken from '../../hooks/useToken';
 
-
-const provider = new GoogleAuthProvider();
-
 export default function Login() {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const { user, loading, providerLogin, signIn } = useContext(AuthContext);
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { loading, signIn } = useContext(AuthContext);
     const [spin, SetSpin] = useState(false);
     const navigate = useNavigate();
-    const location = useLocation();
     const [loginEmail, setLoginEmail] = useState();
     const [token] = useToken(loginEmail)
     const [err, setErr] = useState('');
