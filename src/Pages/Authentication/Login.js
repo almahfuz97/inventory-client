@@ -5,6 +5,8 @@ import toast from 'react-hot-toast';
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Spinner from '../../Components/Spinner/Spinner';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
+import useToken from '../../hooks/useToken';
+
 
 const provider = new GoogleAuthProvider();
 
@@ -15,12 +17,10 @@ export default function Login() {
     const navigate = useNavigate();
     const location = useLocation();
     const [loginEmail, setLoginEmail] = useState();
-    // const [token] = useToken(loginEmail)
+    const [token] = useToken(loginEmail)
     const [err, setErr] = useState('');
-    const from = location.state?.from?.pathname || '/';
-    console.log(from)
 
-    // if (token) return navigate(from, { replace: true })
+    if (token) return navigate('/inventory', { replace: true })
 
     const onSubmit = data => {
         SetSpin(true);
@@ -30,7 +30,6 @@ export default function Login() {
                 console.log(result);
                 toast('Login successfull')
                 SetSpin(false)
-                // navigate(from, { replace: true })
                 setLoginEmail(data.email);
             })
             .catch(err => {
@@ -40,34 +39,8 @@ export default function Login() {
             })
     }
 
-    const saveUser = (data) => {
-        const userInfo = {
-            email: data.email,
-            name: data.fullName,
-            role: 'Buyer',
-            isVerified: false
-        }
-        console.log(userInfo);
-
-        fetch(`${process.env.REACT_APP_url}/users`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(userInfo)
-        })
-            .then(res => res.json())
-            .then(resData => {
-                console.log(resData)
-                setLoginEmail(data.email);
-            })
-            .catch(err => console.log(err))
-    }
 
     if (loading) return <Spinner />
-    // if (spin) return <Spinner />
-    // if (token) return <Navigate to={from} replace />
-    if (user?.uid) return <Navigate to={from} replace={true} />
     return (
         <div className='my-12 mx-4'>
             <h1 className=' text-center font-bold text-3xl mb-8'>Manage Inventory</h1>
@@ -95,7 +68,7 @@ export default function Login() {
                                     </div>
                                 </div>
                                 :
-                                <input type="submit" className='btn border cursor-pointer hover:bg-slate-50 rounded-lg w-full mt-4 py-2 px-2' value="Login" />
+                                <input type="submit" className='border p-2 rounded-lg hover:cursor-pointer hover:bg-slate-50 w-full mt-4' value="Login" />
 
                         }
                         <p className=' text-center text-xs mt-2'>New to Doctors Portal?
