@@ -225,6 +225,9 @@ export default function AddProduct() {
 
                                         }
                                         {
+                                            categories?.length === 0 && <p className=' text-red-500 mt-2'>Add a category first from category section</p>
+                                        }
+                                        {
                                             errors?.category && <p className=' text-red-500'>{errors.category.message}</p>
                                         }
                                     </div>
