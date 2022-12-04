@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Login from "../Pages/Authentication/Login";
 import Register from "../Pages/Authentication/Register";
+import Categories from "../Pages/Dashboard/Categories/Categories";
 import DashboarLayout from "../Pages/Dashboard/DashboarLayout";
 import Profile from "../Pages/Dashboard/Profile/Profile";
 import PrivateRoute from "./PrivateRoute";
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/profile',
                 element: <Profile />
+            },
+            {
+                path: '/dashboard/categories',
+                element: <Categories />
             },
         ]
     }

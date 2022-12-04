@@ -13,8 +13,9 @@ export default function DashboarLayout() {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 text-base-content font-bold bg-slate-200">
+                    <ul className="menu p-4 w-80 text-base-content space-y-2 font-bold bg-slate-200">
                         <Link to='/dashboard/profile' className='btn text-center'>Profile</Link>
+                        <Link to='/dashboard/categories' className='btn text-center'>Categories</Link>
                     </ul>
 
                 </div>
