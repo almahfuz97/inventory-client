@@ -66,7 +66,7 @@ export default function Categories() {
             </div>
             <div>
                 {
-                    categories?.map(category => <CategoryCard key={category._id} category={category}></CategoryCard>)
+                    categories?.map(category => <CategoryCard key={category._id} refetch={refetch} category={category}></CategoryCard>)
                 }
             </div>
             <AddCategoryModal setSpin={setSpin} spin={spin} addCategory={addCategory}></AddCategoryModal>

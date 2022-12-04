@@ -1,0 +1,4 @@
+
+
+REACT_APP_url=https://inventory-server-zeta.vercel.app
+REACT_APP_url=http://localhost:5000

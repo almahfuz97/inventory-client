@@ -22,7 +22,6 @@ export default function AddCategoryModal({ addCategory, spin, setSpin }) {
                         <input onClick={() => setSpin(true)} htmlFor='add-category' type='submit' value='Add' className=' p-2 px-4 text-white mt-2 cursor-pointer rounded-lg bg-green-400' />
                         {
                             spin && <Spinner />
-
                         }
                         <label htmlFor="add-category">Cancel</label>
                     </form>
